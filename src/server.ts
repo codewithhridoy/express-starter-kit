@@ -1,27 +1,27 @@
-require("dotenv").config();
-import express, { Request, Response } from "express";
-import morgan from "morgan";
+require('dotenv').config()
+import express, { Request, Response } from 'express'
+import morgan from 'morgan'
 
-const app = express();
+const app = express()
 
-if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 
-app.get("/api/health-checker", (req: Request, res: Response) => {
+app.get('/api/health-checker', (req: Request, res: Response) => {
   res.status(200).json({
-    status: "success",
-    message: "✅ Starter Kit is working fine!",
-  });
-});
+    status: 'success',
+    message: '✅ Starter Kit is working fine!',
+  })
+})
 
-app.all("*", (req: Request, res: Response) => {
+app.all('*', (req: Request, res: Response) => {
   res.status(404).json({
-    status: "fail",
+    status: 'fail',
     message: `Route: ${req.originalUrl} does not exist on this server`,
-  });
-});
+  })
+})
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000
 
 app.listen(PORT, async () => {
-  console.log("🚀Server started Successfully");
-});
+  console.log('🚀Server started Successfully')
+})
