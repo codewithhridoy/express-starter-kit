@@ -128,3 +128,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#Lock files
+pnpm-lock.yaml
+yarn.lock
+
+#Environment Variables
+.env
+.env.prod
+.env.dev
+.env.local
