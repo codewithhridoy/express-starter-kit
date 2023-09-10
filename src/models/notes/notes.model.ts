@@ -1,4 +1,4 @@
-import { DataTypes, sequelize } from '@/configs/database/db'
+import { DataTypes, sequelize } from 'configs/database/db'
 
 const NotesModel = sequelize.define('notes', {
   id: {
