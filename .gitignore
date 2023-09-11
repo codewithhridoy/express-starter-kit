@@ -138,3 +138,5 @@ yarn.lock
 .env.prod
 .env.dev
 .env.local
+
+.idea

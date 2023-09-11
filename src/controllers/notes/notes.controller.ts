@@ -1,8 +1,8 @@
+import { Request, Response } from 'express'
 import NotesModel from 'models/notes/notes.model'
 import { CreateNoteInput, FilterQueryInput, ParamsInput, UpdateNoteInput } from 'schemas/notes/notes.schema'
-import { Request, Response } from 'express'
 
-export const createNoteController = async (req: Request<{}, {}, CreateNoteInput>, res: Response) => {
+export const createNoteController = async (req: Request<any, any, CreateNoteInput>, res: Response) => {
   try {
     const { title, content, category, published } = req.body
 
@@ -102,7 +102,12 @@ export const findAllNotesController = async (req: Request<{}, {}, {}, FilterQuer
     const limit = req.query.limit || 10
     const skip = (page - 1) * limit
 
-    const notes = await NotesModel.findAll({ limit, offset: skip })
+    const notes = await NotesModel.findAll({
+      limit,
+      offset: skip,
+      order: [['createdAt', 'DESC']],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    })
 
     res.status(200).json({
       status: 'success',
